@@ -1,0 +1,130 @@
+.safari-app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 0 0 12px 12px;
+}
+
+.safari-toolbar {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-bottom: 1px solid #e0e0e0;
+  background: #f8f8f8;
+  gap: 12px;
+}
+
+.safari-nav {
+  display: flex;
+  gap: 4px;
+}
+
+.safari-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+}
+
+.safari-btn:hover {
+  background: #e0e0e0;
+}
+
+.safari-address-bar {
+  flex: 1;
+  margin: 0 12px;
+}
+
+.address-input {
+  width: 100%;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  background: white;
+}
+
+.address-input:focus {
+  outline: none;
+  border-color: #007AFF;
+}
+
+.safari-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.safari-content {
+  flex: 1;
+  overflow: auto;
+  background: #f9f9f9;
+}
+
+.webpage-mockup {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  min-height: 100%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.webpage-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.webpage-header h1 {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.webpage-body {
+  padding: 40px 20px;
+}
+
+.webpage-section {
+  margin-bottom: 32px;
+}
+
+.webpage-section h2 {
+  color: #333;
+  margin-bottom: 16px;
+  font-size: 24px;
+}
+
+.webpage-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.webpage-section li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  color: #666;
+}
+
+.news-item {
+  background: #f8f8f8;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.news-item h3 {
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.news-item p {
+  color: #666;
+  margin: 0;
+}

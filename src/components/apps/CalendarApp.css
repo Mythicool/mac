@@ -1,0 +1,115 @@
+.calendar-app {
+  height: 100%;
+  background: white;
+  border-radius: 0 0 12px 12px;
+  padding: 20px;
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.calendar-nav-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: #f0f0f0;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+}
+
+.calendar-nav-btn:hover {
+  background: #e0e0e0;
+}
+
+.calendar-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+}
+
+.calendar-grid {
+  height: calc(100% - 80px);
+}
+
+.calendar-days-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  margin-bottom: 8px;
+}
+
+.calendar-day-header {
+  padding: 8px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: 1px;
+  height: 100%;
+}
+
+.calendar-day {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-day:hover {
+  background: #f0f0f0;
+}
+
+.calendar-day.today {
+  background: #007AFF;
+  color: white;
+}
+
+.calendar-day.today:hover {
+  background: #0056CC;
+}
+
+.day-number {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.calendar-day.has-event .day-number {
+  font-weight: 600;
+}
+
+.event-indicator {
+  margin-top: 4px;
+  display: flex;
+  gap: 2px;
+  flex-wrap: wrap;
+}
+
+.event-dot {
+  width: 6px;
+  height: 6px;
+  background: #ff3b30;
+  border-radius: 50%;
+}
+
+.calendar-day.today .event-dot {
+  background: rgba(255, 255, 255, 0.8);
+}
