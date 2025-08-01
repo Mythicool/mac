@@ -1,8 +1,10 @@
 .security-app {
-  height: 100%;
+  height: auto;
+  min-height: 100%;
   background: white;
   border-radius: 0 0 12px 12px;
-  overflow-y: auto;
+  /* Remove overflow from here - let parent handle it */
+  position: relative;
 }
 
 .security-header {

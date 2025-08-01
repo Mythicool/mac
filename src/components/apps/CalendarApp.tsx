@@ -22,9 +22,12 @@ const CalendarApp = () => {
   }
 
   const events = [
-    { day: 15, title: 'Team Meeting', time: '10:00 AM' },
-    { day: 22, title: 'Project Deadline', time: '5:00 PM' },
-    { day: 28, title: 'Conference Call', time: '2:00 PM' },
+    { day: 5, title: 'Security Assessment - ABC Corp', time: '9:00 AM' },
+    { day: 12, title: 'Cloud Migration Planning', time: '2:00 PM' },
+    { day: 18, title: 'Quarterly Business Review', time: '10:00 AM' },
+    { day: 22, title: 'Network Maintenance Window', time: '11:00 PM' },
+    { day: 25, title: 'Staff Training - Cybersecurity', time: '1:00 PM' },
+    { day: 28, title: 'Client Onboarding Meeting', time: '3:00 PM' },
   ]
 
   return (

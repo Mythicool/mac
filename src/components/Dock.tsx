@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Folder, Terminal, Globe, Mail, Calendar, Camera, Music } from 'lucide-react'
-import FinderApp from './apps/FinderApp'
-import TerminalApp from './apps/TerminalApp'
-import SafariApp from './apps/SafariApp'
-import MailApp from './apps/MailApp'
+import { Home, Shield, Wrench, Mail, Calendar, Users, FileText } from 'lucide-react'
+import HomeApp from './apps/HomeApp'
+import SecurityApp from './apps/SecurityApp'
+import ServicesApp from './apps/ServicesApp'
+import ContactApp from './apps/ContactApp'
 import CalendarApp from './apps/CalendarApp'
-import PhotosApp from './apps/PhotosApp'
-import MusicApp from './apps/MusicApp'
+import TeamApp from './apps/TeamApp'
+import BlogApp from './apps/BlogApp'
 import './Dock.css'
 
 interface DockProps {
@@ -18,13 +18,13 @@ const Dock = ({ onOpenApp }: DockProps) => {
   const [hoveredIcon, setHoveredIcon] = useState<string | null>(null)
 
   const apps = [
-    { id: 'finder', name: 'Finder', icon: Folder, component: FinderApp },
-    { id: 'terminal', name: 'Terminal', icon: Terminal, component: TerminalApp },
-    { id: 'safari', name: 'Safari', icon: Globe, component: SafariApp },
-    { id: 'mail', name: 'Mail', icon: Mail, component: MailApp },
-    { id: 'calendar', name: 'Calendar', icon: Calendar, component: CalendarApp },
-    { id: 'photos', name: 'Photos', icon: Camera, component: PhotosApp },
-    { id: 'music', name: 'Music', icon: Music, component: MusicApp },
+    { id: 'home', name: 'Home', icon: Home, component: HomeApp },
+    { id: 'security', name: 'Security', icon: Shield, component: SecurityApp },
+    { id: 'services', name: 'Services', icon: Wrench, component: ServicesApp },
+    { id: 'contact', name: 'Contact', icon: Mail, component: ContactApp },
+    { id: 'calendar', name: 'Schedule', icon: Calendar, component: CalendarApp },
+    { id: 'team', name: 'Our Team', icon: Users, component: TeamApp },
+    { id: 'blog', name: 'Blog', icon: FileText, component: BlogApp },
   ]
 
   return (

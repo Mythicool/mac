@@ -15,15 +15,16 @@ body {
 .macos-desktop {
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80');
+  background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 50%, #581c87 100%);
+  background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2560&q=80');
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
   position: relative;
   overflow: hidden;
 }
 
-/* Window styles */
+/* Enhanced Window styles with better performance */
 .window {
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(20px);
@@ -33,6 +34,47 @@ body {
   overflow: hidden;
   min-width: 400px;
   min-height: 300px;
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border 0.2s ease;
+  /* Performance optimizations */
+  will-change: transform, opacity, box-shadow;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  /* Ensure proper layout for scrolling */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.window:hover {
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+}
+
+/* Enhanced visual feedback for dragging */
+.window.dragging {
+  transform: scale(1.02) rotateZ(1deg);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+  transition: none; /* Disable transitions during drag for smooth performance */
+}
+
+/* Focused window state */
+.window.focused {
+  transform: scale(1.01);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Maximized window state */
+.window.maximized {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Smooth transitions for window state changes */
+.window.transitioning {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .window-header {
@@ -44,6 +86,14 @@ body {
   padding: 0 12px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   cursor: move;
+  transition: background-color 0.2s ease, backdrop-filter 0.2s ease;
+  /* Ensure header doesn't shrink */
+  flex-shrink: 0;
+}
+
+.window.focused .window-header {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
 }
 
 .window-controls {
@@ -56,23 +106,75 @@ body {
   height: 12px;
   border-radius: 50%;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.window-control::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
 }
 
 .window-control:hover {
   transform: scale(1.1);
 }
 
+.window-control:hover::before {
+  width: 20px;
+  height: 20px;
+}
+
+.window-control:active {
+  transform: scale(0.9);
+}
+
+.window-control:hover::after {
+  opacity: 1;
+}
+
 .window-control.close {
   background: #ff5f57;
+}
+
+.window-control.close:hover::after {
+  content: '×';
+  color: #8b0000;
+  font-size: 10px;
+  font-weight: bold;
 }
 
 .window-control.minimize {
   background: #ffbd2e;
 }
 
+.window-control.minimize:hover::after {
+  content: '−';
+  color: #8b4513;
+  font-size: 10px;
+  font-weight: bold;
+}
+
 .window-control.maximize {
   background: #28ca42;
+}
+
+.window-control.maximize:hover::after {
+  content: '⤢';
+  color: #006400;
+  font-size: 8px;
+  font-weight: bold;
 }
 
 .window-title {
@@ -81,10 +183,92 @@ body {
   font-size: 13px;
   font-weight: 500;
   color: rgba(0, 0, 0, 0.8);
+  transition: opacity 0.2s ease, color 0.2s ease, font-weight 0.2s ease;
+}
+
+.window.focused .window-title {
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 600;
 }
 
 .window-content {
   padding: 20px;
-  height: calc(100% - 28px);
-  overflow: auto;
+  flex: 1;
+  overflow: auto !important;
+  scroll-behavior: smooth;
+  /* Enhanced scrolling performance */
+  -webkit-overflow-scrolling: touch;
+  /* Better scroll snap */
+  scroll-snap-type: y proximity;
+  /* Performance optimizations */
+  will-change: scroll-position;
+  /* Ensure scrolling works */
+  position: relative;
+  box-sizing: border-box;
+  /* Ensure content can scroll */
+  min-height: 0;
+}
+
+/* Enhanced scrollbar styling with animations */
+.window-content::-webkit-scrollbar {
+  width: 8px;
+  transition: width 0.2s ease;
+}
+
+.window-content:hover::-webkit-scrollbar {
+  width: 12px;
+}
+
+.window-content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+  margin: 4px;
+}
+
+.window-content::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+  transition: all 0.2s ease;
+}
+
+.window-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
+  background-clip: content-box;
+}
+
+.window-content::-webkit-scrollbar-thumb:active {
+  background: rgba(0, 0, 0, 0.6);
+  background-clip: content-box;
+}
+
+/* Smooth content animations */
+.window-content > * {
+  scroll-snap-align: start;
+}
+
+/* Performance optimizations for multiple windows */
+@media (prefers-reduced-motion: no-preference) {
+  .window {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                border 0.2s ease;
+  }
+}
+
+/* Reduce animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .window,
+  .window-control,
+  .window-header,
+  .window-title,
+  .window-content {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  .window-content {
+    scroll-behavior: auto;
+  }
 }

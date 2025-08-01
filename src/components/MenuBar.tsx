@@ -2,7 +2,11 @@ import React, { useState } from 'react'
 import { Wifi, Battery, Search } from 'lucide-react'
 import './MenuBar.css'
 
-const MenuBar = () => {
+interface MenuBarProps {
+  onMenuAction?: (action: string) => void
+}
+
+const MenuBar = ({ onMenuAction }: MenuBarProps) => {
   const [activeMenu, setActiveMenu] = useState<string | null>(null)
   const [time, setTime] = useState(new Date())
 
@@ -13,12 +17,12 @@ const MenuBar = () => {
   }, [])
 
   const menuItems = [
-    { id: 'apple', label: '🍎', items: ['About This Mac', 'System Preferences...', 'App Store...', '---', 'Recent Items', '---', 'Force Quit...', '---', 'Sleep', 'Restart...', 'Shut Down...'] },
-    { id: 'file', label: 'File', items: ['New', 'Open...', 'Close', '---', 'Save', 'Save As...', '---', 'Print...'] },
-    { id: 'edit', label: 'Edit', items: ['Undo', 'Redo', '---', 'Cut', 'Copy', 'Paste', 'Select All'] },
-    { id: 'view', label: 'View', items: ['Show Toolbar', 'Customize Toolbar...', '---', 'Show Sidebar', 'Hide Sidebar'] },
-    { id: 'window', label: 'Window', items: ['Minimize', 'Zoom', '---', 'Bring All to Front'] },
-    { id: 'help', label: 'Help', items: ['Search', '---', 'macOS Help'] }
+    { id: 'soonertech', label: '🏢', items: ['About SoonerTech', 'Our Services', 'Contact Us', '---', 'Client Portal', '---', 'Emergency Support', '---', 'Schedule Consultation'] },
+    { id: 'services', label: 'Services', items: ['Managed IT', 'Cybersecurity', 'Cloud Solutions', '---', 'IT Consulting', '24/7 Support', '---', 'View All Services'] },
+    { id: 'solutions', label: 'Solutions', items: ['Small Business', 'Enterprise', 'Healthcare', 'Legal', '---', 'Industry Solutions'] },
+    { id: 'resources', label: 'Resources', items: ['Blog', 'Case Studies', 'White Papers', '---', 'Security Alerts', 'Best Practices'] },
+    { id: 'support', label: 'Support', items: ['Help Desk', 'Remote Assistance', 'Knowledge Base', '---', 'Submit Ticket', 'Emergency Line'] },
+    { id: 'about', label: 'About', items: ['Our Team', 'Careers', 'Testimonials', '---', 'Oklahoma Locations'] }
   ]
 
   const formatTime = (date: Date) => {
@@ -49,7 +53,11 @@ const MenuBar = () => {
                   item === '---' ? (
                     <div key={index} className="menu-separator" />
                   ) : (
-                    <div key={index} className="dropdown-item">
+                    <div 
+                      key={index} 
+                      className="dropdown-item"
+                      onClick={() => onMenuAction?.(item)}
+                    >
                       {item}
                     </div>
                   )

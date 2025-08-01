@@ -1,8 +1,14 @@
 .home-app {
-  height: 100%;
+  height: auto;
+  min-height: 100%;
   background: white;
   border-radius: 0 0 12px 12px;
-  overflow-y: auto;
+  /* Remove overflow from here - let parent handle it */
+  /* Enhanced scrolling performance */
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  /* Ensure content is scrollable */
+  position: relative;
 }
 
 .hero-section {
@@ -119,11 +125,15 @@
   padding: 32px 24px;
   border-radius: 12px;
   text-align: center;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.3s ease;
+  /* Scroll snap for better scrolling experience */
+  scroll-snap-align: start;
 }
 
 .feature-card:hover {
   transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
 .feature-card h3 {
@@ -188,4 +198,113 @@
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+}
+/* N
+ew sections for enhanced scrollable content */
+.testimonials-section {
+  padding: 60px 40px;
+  background: #f8f9fa;
+  scroll-snap-align: start;
+}
+
+.testimonials-section h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 48px;
+  text-align: center;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.testimonial-card {
+  background: white;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s ease;
+  scroll-snap-align: start;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.testimonial-card p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+
+.testimonial-author {
+  font-size: 14px;
+  color: #007AFF;
+  font-weight: 600;
+}
+
+.services-preview {
+  padding: 60px 40px;
+  background: white;
+  scroll-snap-align: start;
+}
+
+.services-preview h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 48px;
+  text-align: center;
+}
+
+.services-list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: grid;
+  gap: 24px;
+}
+
+.service-item {
+  padding: 24px;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  scroll-snap-align: start;
+}
+
+.service-item:hover {
+  border-color: #007AFF;
+  transform: translateX(8px);
+  box-shadow: 0 4px 16px rgba(0, 122, 255, 0.1);
+}
+
+.service-item h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.service-item p {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Enhanced scroll snap for sections */
+.hero-section,
+.features-section,
+.stats-section,
+.cta-section,
+.testimonials-section,
+.services-preview {
+  scroll-snap-align: start;
 }

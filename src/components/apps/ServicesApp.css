@@ -1,8 +1,16 @@
 .services-app {
-  height: 100%;
+  height: auto;
+  min-height: 100%;
   background: white;
   border-radius: 0 0 12px 12px;
-  overflow-y: auto;
+  /* Remove overflow from here - let parent handle it */
+  /* Enhanced scrolling performance */
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  /* Ensure content is scrollable */
+  position: relative;
+  /* Scroll snap for better UX */
+  scroll-snap-type: y proximity;
 }
 
 .services-header {
@@ -10,6 +18,7 @@
   color: white;
   padding: 40px;
   text-align: center;
+  scroll-snap-align: start;
 }
 
 .services-header h1 {
@@ -28,13 +37,16 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 32px;
+  scroll-snap-align: start;
 }
 
 .service-card {
   background: #f8f9fa;
   border-radius: 12px;
   padding: 24px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.3s ease;
+  scroll-snap-align: start;
 }
 
 .service-card:hover {
@@ -273,4 +285,59 @@
 .btn-secondary:hover {
   background: #059669;
   color: white;
+}/* Enha
+nced scroll snap for all major sections */
+.industries-section,
+.service-process,
+.services-cta {
+  scroll-snap-align: start;
+}
+
+/* Enhanced hover effects for better visual feedback */
+.industry-card {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s ease;
+}
+
+.industry-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.process-step {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.process-step:hover {
+  transform: translateY(-4px);
+}
+
+.step-number {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s ease;
+}
+
+.process-step:hover .step-number {
+  transform: scale(1.1);
+  box-shadow: 0 4px 16px rgba(5, 150, 105, 0.3);
+}
+
+/* Enhanced button animations */
+.btn-primary,
+.btn-secondary,
+.btn-outline {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-outline:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:active,
+.btn-secondary:active,
+.btn-outline:active {
+  transform: translateY(0);
 }

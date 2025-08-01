@@ -76,6 +76,46 @@ const HomeApp = () => {
           Schedule Free Consultation <ArrowRight size={16} />
         </button>
       </div>
+
+      <div className="testimonials-section">
+        <h2>What Our Clients Say</h2>
+        <div className="testimonials-grid">
+          <div className="testimonial-card">
+            <p>"SoonerTech transformed our IT infrastructure. Their proactive approach prevented countless issues."</p>
+            <div className="testimonial-author">- Sarah Johnson, CEO of TulsaCorp</div>
+          </div>
+          <div className="testimonial-card">
+            <p>"Outstanding cybersecurity solutions. We sleep better knowing our data is protected."</p>
+            <div className="testimonial-author">- Mike Davis, CFO of OKC Industries</div>
+          </div>
+          <div className="testimonial-card">
+            <p>"24/7 support that actually works. Response times are incredible."</p>
+            <div className="testimonial-author">- Lisa Chen, IT Director at Norman Tech</div>
+          </div>
+        </div>
+      </div>
+
+      <div className="services-preview">
+        <h2>Our Core Services</h2>
+        <div className="services-list">
+          <div className="service-item">
+            <h3>Managed IT Services</h3>
+            <p>Complete IT infrastructure management and monitoring</p>
+          </div>
+          <div className="service-item">
+            <h3>Cybersecurity Solutions</h3>
+            <p>Advanced threat protection and compliance management</p>
+          </div>
+          <div className="service-item">
+            <h3>Cloud Migration</h3>
+            <p>Seamless transition to cloud-based solutions</p>
+          </div>
+          <div className="service-item">
+            <h3>Backup & Recovery</h3>
+            <p>Comprehensive data protection and disaster recovery</p>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
